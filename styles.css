@@ -38,3 +38,51 @@ body.light{color-scheme:light;--bg:#f3f2ec;--panel:#e9e8df;--panel2:#e2e2d8;--te
 
 .signature-name{display:block;font-family:'Segoe Script','Bradley Hand','Brush Script MT',cursive;font-size:38px;font-weight:500;font-style:italic;letter-spacing:-.06em;color:#b8b6ad;line-height:1.05;transform:rotate(-2deg);transform-origin:left center;margin-left:-3px;margin-bottom:8px}
 @media(max-width:620px){.signature-name{font-size:31px}}
+
+/* Quiet, element-level motion */
+@keyframes rise-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes line-in{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 #759b5640}50%{box-shadow:0 0 0 5px #759b5600}}
+
+.hero > *{animation:rise-in .7s cubic-bezier(.22,1,.36,1) both}
+.hero > .availability{animation-delay:.05s}
+.hero > h1{animation-delay:.14s}
+.hero > .hero-bottom{animation-delay:.24s}
+.hero > .hero-rule{animation:line-in .8s .34s cubic-bezier(.22,1,.36,1) both}
+.hero > .metrics{animation-delay:.42s}
+.hero > .hero-note{animation-delay:.5s}
+.availability i{animation:pulse-dot 2.4s ease-in-out infinite}
+
+.hero h1 .serif-accent{display:inline-block;transition:color .25s,transform .35s cubic-bezier(.22,1,.36,1)}
+.hero h1:hover .serif-accent{color:var(--text);transform:translateX(5px)}
+.text-link,.contact-email{transition:color .25s,border-color .25s,padding-left .25s}
+.text-link:hover,.contact-email:hover{color:var(--accent);border-color:var(--accent);padding-left:6px}
+.hero-socials a{transition:color .25s,transform .25s cubic-bezier(.22,1,.36,1)}
+.hero-socials a:hover,.hero-socials a:focus-visible{transform:translateY(-4px) scale(1.08)}
+
+.project{transition:border-color .3s}
+.project:hover{border-color:#759b5680}
+.project h3{transition:color .25s,letter-spacing .35s cubic-bezier(.22,1,.36,1)}
+.project:hover h3{color:var(--accent);letter-spacing:-.045em}
+.project-body>div,.project-points li{transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.project:hover .project-body>div:first-child{transform:translateX(4px)}
+.project:hover .project-body>div:last-child{transform:translateX(8px)}
+.project-points li:hover{transform:translateX(5px)}
+.tags span{transition:color .2s,border-color .2s,background-color .2s,transform .2s}
+.tags span:hover{color:var(--text);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);transform:translateY(-2px)}
+.project-links a{transition:color .2s,transform .2s}
+.project-links a:hover{transform:translateX(3px)}
+
+.focus-list>div,.achievement-grid>div,.timeline-item,.education-row{transition:border-color .3s,transform .35s cubic-bezier(.22,1,.36,1)}
+.focus-list>div:hover,.timeline-item:hover,.education-row:hover{transform:translateX(6px);border-color:#759b5680}
+.achievement-grid>div:hover{background:color-mix(in srgb,var(--accent) 5%,transparent)}
+.contact-links a{transition:color .2s,padding-left .3s,background-color .3s}
+.contact-links a:hover{padding-left:10px;background:color-mix(in srgb,var(--accent) 5%,transparent)}
+
+@media(prefers-reduced-motion:reduce){
+  .hero > *,.hero > .hero-rule{animation:none}
+  .availability i{animation:none}
+  .hero h1 .serif-accent,.project h3,.project-body>div,.project-points li,.tags span,
+  .project-links a,.focus-list>div,.achievement-grid>div,.timeline-item,.education-row,
+  .contact-links a{transition:none}
+}
