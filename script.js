@@ -12,6 +12,59 @@ navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', 
   menuButton.setAttribute('aria-label', 'Open navigation');
 }));
 
+const wordmarkText = document.querySelector('.wordmark-text');
+const wordmarkCursor = document.querySelector('.typing-cursor');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+async function typeWordmark() {
+  const words = ['deepanshu', 'tevathiya'];
+  const typeDelay = 105;
+  const wordDelay = 260;
+  const blinkDelay = 360;
+  const eraseDelay = 65;
+  const writtenPause = 2200;
+
+  if (reduceMotion.matches) {
+    wordmarkText.textContent = words.join(' ');
+    wordmarkCursor.classList.add('is-static');
+    return;
+  }
+
+  while (true) {
+    wordmarkText.textContent = '';
+    wordmarkCursor.classList.remove('is-hidden');
+    for (let wordIndex = 0; wordIndex < words.length; wordIndex += 1) {
+      const word = words[wordIndex];
+      for (const character of word) {
+        wordmarkText.textContent += character;
+        await new Promise(resolve => setTimeout(resolve, typeDelay));
+      }
+      if (wordIndex < words.length - 1) {
+        wordmarkText.textContent += ' ';
+        await new Promise(resolve => setTimeout(resolve, wordDelay));
+      }
+    }
+
+    for (let blink = 0; blink < 3; blink += 1) {
+      wordmarkCursor.classList.add('is-hidden');
+      await new Promise(resolve => setTimeout(resolve, blinkDelay));
+      wordmarkCursor.classList.remove('is-hidden');
+      await new Promise(resolve => setTimeout(resolve, blinkDelay));
+    }
+
+    await new Promise(resolve => setTimeout(resolve, writtenPause));
+    wordmarkCursor.classList.add('is-hidden');
+    for (let index = wordmarkText.textContent.length; index > 0; index -= 1) {
+      wordmarkText.textContent = wordmarkText.textContent.slice(0, index - 1);
+      await new Promise(resolve => setTimeout(resolve, eraseDelay));
+    }
+    await new Promise(resolve => setTimeout(resolve, wordDelay));
+    wordmarkCursor.classList.remove('is-hidden');
+  }
+}
+
+typeWordmark();
+
 const themeButton = document.querySelector('.theme-toggle');
 const storedTheme = localStorage.getItem('portfolio-theme');
 if (storedTheme === 'light') document.body.classList.add('light');
