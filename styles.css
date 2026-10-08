@@ -368,3 +368,30 @@ body{font-size:16px}
   .contact-links{grid-template-columns:1fr}
   .contact-links a{min-height:68px}
 }
+
+/* Editorial treatment for the About and Experience sections. */
+.about-copy .about-kicker{margin:0 0 18px;color:var(--accent);font:10px var(--mono);letter-spacing:.14em}
+.about-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px}
+.about-facts>div{display:flex;flex-direction:column;gap:6px;padding:13px 12px;border:1px solid var(--line);background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 8%,transparent),transparent 75%);transition:border-color .25s,transform .25s,background-color .25s}
+.about-facts>div:hover{border-color:#759b5680;background-color:color-mix(in srgb,var(--accent) 7%,transparent);transform:translateY(-4px)}
+.about-facts strong{font-size:22px;line-height:1;color:var(--accent);letter-spacing:-.05em}
+.about-facts span{color:var(--muted);font:9px var(--mono);letter-spacing:.1em}
+.timeline-date{position:relative;display:flex;flex-direction:column;gap:8px;padding-left:20px;border-left:1px solid #759b5680}
+.timeline-dot{position:absolute;left:-5px;top:5px;width:9px;height:9px;border:2px solid var(--accent);border-radius:50%;background:var(--bg);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 10%,transparent)}
+.timeline-date small{color:var(--accent);font:9px var(--mono);letter-spacing:.1em}
+.role-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.role-status{padding:5px 8px;border:1px solid #759b5680;color:var(--accent);font:9px var(--mono);letter-spacing:.12em}
+.experience-block{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:16px 0;border-bottom:1px solid #ffffff0b}
+.experience-block>span{color:var(--accent);font:10px var(--mono);padding-top:4px}
+.experience-block p{max-width:730px;color:#aaada5;font-size:14px;line-height:1.9;margin:0}
+.experience-block strong{color:var(--text);font-weight:600}
+@media(max-width:850px){
+  .about-facts{max-width:520px}
+  .role-heading{gap:12px}
+}
+@media(max-width:520px){
+  .about-facts{gap:7px}
+  .about-facts>div{padding:11px 9px}
+  .about-facts span{font-size:8px;letter-spacing:.06em}
+  .role-heading{flex-direction:column}
+}
