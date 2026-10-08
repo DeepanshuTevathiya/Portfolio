@@ -43,8 +43,9 @@ const revealObserver = new IntersectionObserver(entries => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.08 });
-document.querySelectorAll('.project, .focus-list > div, .timeline-item, .education-row, .achievement-grid > div').forEach(item => {
+}, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+document.querySelectorAll('.section-heading, .project, .about-grid, .focus-list > div, .achievement-grid > div, .timeline-item, .education-row, .credentials, .contact-inner').forEach((item, index) => {
   item.classList.add('reveal');
+  item.style.setProperty('--reveal-delay', `${Math.min(index * 45, 220)}ms`);
   revealObserver.observe(item);
 });
